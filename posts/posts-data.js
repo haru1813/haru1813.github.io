@@ -1,4 +1,6 @@
-{
+// file:// 로 열어도 동작하도록 posts 데이터를 전역에 제공합니다.
+// 최신 데이터는 posts/posts.json 과 동일하게 유지하세요.
+window.__POSTS__ = {
   "posts": [
     {
       "id": "ai-era-developer-growth",
@@ -236,5 +238,5 @@
       ]
     }
   ]
-}
+};
 

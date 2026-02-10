@@ -32,8 +32,8 @@
         </a>
 
         <nav class="nav" aria-label="주요 메뉴">
-          <a class="nav-link" href="./#posts">글</a>
-          <a class="nav-link" href="./#about">소개</a>
+          <a class="nav-link" href="./index.html?cat=%EC%A0%84%EC%B2%B4%20%EB%B3%B4%EA%B8%B0">카테고리</a>
+          <a class="nav-link" href="https://github.com/haru1813" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
 
         <div class="header-actions">
@@ -47,7 +47,7 @@
     <main id="content" class="section">
       <div class="container">
         <div class="breadcrumbs">
-          <a href="./#posts" class="muted small">← 글 목록으로</a>
+          <a id="backToList" href="./index.html?cat=%EC%A0%84%EC%B2%B4%20%EB%B3%B4%EA%B8%B0" class="muted small">← 글 목록으로</a>
         </div>
 
         <article class="article" id="article" aria-live="polite">
@@ -64,7 +64,7 @@
         </article>
 
         <div class="article-footer">
-          <a class="btn secondary" href="./#posts">목록</a>
+          <a id="backToListBtn" class="btn secondary" href="./index.html?cat=%EC%A0%84%EC%B2%B4%20%EB%B3%B4%EA%B8%B0">목록</a>
         </div>
       </div>
     </main>
@@ -77,6 +77,7 @@
       </div>
     </footer>
 
+    <script src="./posts/posts-data.js" defer></script>
     <script src="./assets/main.js" defer></script>
   </body>
 </html>

@@ -125,10 +125,17 @@ function mdToHtml(lines) {
 }
 
 async function loadPosts() {
-  const res = await fetch(POSTS_URL, { cache: "no-store" });
-  if (!res.ok) throw new Error(`posts.json 로드 실패: ${res.status}`);
-  const data = await res.json();
-  const posts = Array.isArray(data.posts) ? data.posts : [];
+  // file:// 로 페이지를 열면 fetch가 막힐 수 있어 전역 데이터(window.__POSTS__)를 fallback으로 사용
+  let data = null;
+  try {
+    const res = await fetch(POSTS_URL, { cache: "no-store" });
+    if (!res.ok) throw new Error(`posts.json 로드 실패: ${res.status}`);
+    data = await res.json();
+  } catch {
+    data = typeof window !== "undefined" ? window.__POSTS__ : null;
+  }
+
+  const posts = data && Array.isArray(data.posts) ? data.posts : [];
   // 최신순 정렬
   posts.sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
   return posts;
@@ -245,6 +252,8 @@ function renderPost(posts) {
   const body = $("#body");
   const tagsEl = $("#tags");
   const rt = $("#readingTime");
+  const backToList = $("#backToList");
+  const backToListBtn = $("#backToListBtn");
   if (!article || !title || !date || !body || !tagsEl) return;
 
   const p = posts.find((x) => String(x.id) === String(id)) || null;
@@ -258,13 +267,19 @@ function renderPost(posts) {
     return;
   }
 
+  // 글의 category가 있으면 해당 카테고리 목록으로 돌아가게 링크 세팅
+  const cat = p.category ? String(p.category) : "전체 보기";
+  const listHref = `./index.html?cat=${encodeURIComponent(cat)}`;
+  if (backToList) backToList.setAttribute("href", listHref);
+  if (backToListBtn) backToListBtn.setAttribute("href", listHref);
+
   title.textContent = p.title || "제목 없음";
   date.textContent = formatDate(p.date || "");
   if (rt) rt.textContent = `· 읽기 ${readingTimeFromLines(p.content)}`;
   body.innerHTML = mdToHtml(p.content || []);
 
   tagsEl.innerHTML = (p.tags || [])
-    .map((t) => `<a class="tag" href="./#posts" title="태그로 이동">#${escapeHtml(t)}</a>`)
+    .map((t) => `<span class="tag" title="태그">#${escapeHtml(t)}</span>`)
     .join("");
 
   document.title = `${p.title} | haru1813 블로그`;
@@ -275,21 +290,88 @@ function setYear() {
   if (y) y.textContent = String(new Date().getFullYear());
 }
 
-function initCategories() {
+async function initCategories() {
   const title = $("#categoryTitle");
   const desc = $("#categoryDesc");
+  const list = $("#categoryPosts");
+  const empty = $("#categoryEmpty");
   const links = Array.from(document.querySelectorAll("[data-cat]"));
-  if (!title || !desc || links.length === 0) return;
+  if (!title || !desc || !list || !empty || links.length === 0) return;
 
   const u = new URL(window.location.href);
   const initial = u.searchParams.get("cat") || "전체 보기";
+
+  let posts = [];
+  try {
+    posts = await loadPosts();
+  } catch {
+    posts = [];
+  }
+
+  const setCounts = () => {
+    const byCat = new Map();
+    for (const p of posts) {
+      const c = p && p.category ? String(p.category) : "";
+      if (!c) continue;
+      byCat.set(c, (byCat.get(c) || 0) + 1);
+    }
+
+    const countPrefix = (prefix) => {
+      const pre = `${prefix}/`;
+      let sum = 0;
+      for (const [k, v] of byCat.entries()) {
+        if (k.startsWith(pre)) sum += v;
+      }
+      return sum;
+    };
+
+    const totalEl = document.querySelector("[data-cat-total]");
+    if (totalEl) totalEl.textContent = `(${posts.length})`;
+
+    document.querySelectorAll("[data-cat-count]").forEach((el) => {
+      const k = el.getAttribute("data-cat-count") || "";
+      el.textContent = `(${byCat.get(k) || 0})`;
+    });
+
+    document.querySelectorAll("[data-cat-group-count]").forEach((el) => {
+      const g = el.getAttribute("data-cat-group-count") || "";
+      el.textContent = `(${countPrefix(g)})`;
+    });
+  };
+
+  const filterByCat = (cat) => {
+    if (cat === "전체 보기") return posts;
+    return posts.filter((p) => String(p.category || "") === String(cat));
+  };
+
+  const renderList = (cat) => {
+    const items = filterByCat(cat);
+    list.innerHTML = items
+      .map((p) => {
+        const href = `./post.html?id=${encodeURIComponent(p.id)}`;
+        return `
+          <a class="cat-post" href="${href}">
+            <h3 class="cat-post-title">${escapeHtml(p.title || "제목 없음")}</h3>
+            <div class="cat-post-meta">
+              <span class="muted small">${escapeHtml(formatDate(p.date || ""))}</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="muted small">읽기 ${escapeHtml(readingTimeFromLines(p.content))}</span>
+            </div>
+            <p class="cat-post-summary muted">${escapeHtml(p.summary || "")}</p>
+          </a>
+        `;
+      })
+      .join("");
+    empty.hidden = items.length !== 0;
+  };
 
   const setActive = (cat) => {
     for (const el of links) {
       el.setAttribute("aria-current", String(el.dataset.cat) === String(cat) ? "true" : "false");
     }
     title.textContent = cat === "전체 보기" ? "전체 카테고리" : cat;
-    desc.textContent = "아직 글은 작성하지 않으며, 카테고리 UI만 먼저 보여줍니다.";
+    desc.textContent = "선택한 카테고리의 글 목록입니다.";
+    renderList(cat);
   };
 
   links.forEach((el) => {
@@ -305,6 +387,7 @@ function initCategories() {
     });
   });
 
+  setCounts();
   setActive(initial);
 }
 
@@ -314,7 +397,7 @@ async function main() {
 
   // 홈: 카테고리만 표시(글/검색 비활성)
   if ($("#categories")) {
-    initCategories();
+    await initCategories();
     return;
   }
 
