@@ -275,28 +275,65 @@ function setYear() {
   if (y) y.textContent = String(new Date().getFullYear());
 }
 
+function initCategories() {
+  const title = $("#categoryTitle");
+  const desc = $("#categoryDesc");
+  const links = Array.from(document.querySelectorAll("[data-cat]"));
+  if (!title || !desc || links.length === 0) return;
+
+  const u = new URL(window.location.href);
+  const initial = u.searchParams.get("cat") || "전체 보기";
+
+  const setActive = (cat) => {
+    for (const el of links) {
+      el.setAttribute("aria-current", String(el.dataset.cat) === String(cat) ? "true" : "false");
+    }
+    title.textContent = cat === "전체 보기" ? "전체 카테고리" : cat;
+    desc.textContent = "아직 글은 작성하지 않으며, 카테고리 UI만 먼저 보여줍니다.";
+  };
+
+  links.forEach((el) => {
+    el.addEventListener("click", () => {
+      const cat = el.dataset.cat || "";
+      setActive(cat);
+      // URL에만 반영(페이지 리로드 없음)
+      try {
+        const next = new URL(window.location.href);
+        next.searchParams.set("cat", cat);
+        window.history.replaceState({}, "", next.toString());
+      } catch {}
+    });
+  });
+
+  setActive(initial);
+}
+
 async function main() {
   setYear();
   initThemeToggle();
 
-  // 홈/상세에서 공통으로 posts 로드
-  let posts = [];
-  try {
-    posts = await loadPosts();
-  } catch (e) {
-    const grid = $("#postGrid");
-    const title = $("#title");
-    const body = $("#body");
-    if (grid) grid.innerHTML = `<div class="empty">글 데이터를 불러오지 못했어요. <span class="muted small">(posts/posts.json 확인)</span></div>`;
-    if (title && body) {
-      title.textContent = "글 데이터를 불러오지 못했어요.";
-      body.innerHTML = `<p class="muted">파일 경로/JSON 형식을 확인해주세요. (${escapeHtml(String(e.message || e))})</p>`;
-    }
+  // 홈: 카테고리만 표시(글/검색 비활성)
+  if ($("#categories")) {
+    initCategories();
     return;
   }
 
-  if ($("#postGrid")) renderHome(posts);
-  if ($("#article")) renderPost(posts);
+  // 글 상세만 posts 로드
+  if ($("#article")) {
+    let posts = [];
+    try {
+      posts = await loadPosts();
+    } catch (e) {
+      const title = $("#title");
+      const body = $("#body");
+      if (title && body) {
+        title.textContent = "글 데이터를 불러오지 못했어요.";
+        body.innerHTML = `<p class="muted">파일 경로/JSON 형식을 확인해주세요. (${escapeHtml(String(e.message || e))})</p>`;
+      }
+      return;
+    }
+    renderPost(posts);
+  }
 }
 
 main();

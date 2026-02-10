@@ -35,8 +35,7 @@
         </a>
 
         <nav class="nav" aria-label="주요 메뉴">
-          <a class="nav-link" href="#posts">글</a>
-          <a class="nav-link" href="#about">소개</a>
+          <a class="nav-link" href="#categories">카테고리</a>
           <a class="nav-link" href="https://github.com/haru1813" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
 
@@ -48,86 +47,129 @@
       </div>
     </header>
 
-    <main id="content">
-      <section class="hero">
-        <div class="container hero-inner">
-          <div class="hero-copy">
-            <h1>공부 기록을 꾸준히 남깁니다.</h1>
-            <p class="muted">
-              파이썬/자바/웹 개발 공부 과정에서 배운 내용을 짧고 명확하게 정리합니다.
-            </p>
-            <div class="hero-cta">
-              <a class="btn" href="#posts">최신 글 보기</a>
-              <a class="btn secondary" href="#about">블로그 소개</a>
-            </div>
-          </div>
-
-          <div class="hero-card" aria-label="프로필">
-            <div class="avatar" aria-hidden="true">haru</div>
-            <div class="hero-meta">
-              <div class="hero-name">haru1813</div>
-              <div class="hero-tags">
-                <span class="pill">#study</span>
-                <span class="pill">#python</span>
-                <span class="pill">#java</span>
-                <span class="pill">#web</span>
-              </div>
-              <div class="muted small">
-                글은 정적 페이지로 제공됩니다. (GitHub Pages)
+    <main id="content" class="section" aria-label="카테고리 메인">
+      <div class="container">
+        <div class="layout" id="categories">
+          <aside class="sidebar" aria-label="카테고리">
+            <div class="profile-card">
+              <img class="profile-img" src="./assets/image/profile.png" alt="프로필 이미지" width="240" height="240" />
+              <div class="profile-meta">
+                <div class="profile-name">haru1813</div>
+                <div class="profile-sub muted">dev blog</div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section class="section" id="posts">
-        <div class="container">
-          <div class="section-head">
-            <h2>글</h2>
-            <div class="filters">
-              <label class="input" aria-label="검색">
-                <span class="input-icon" aria-hidden="true">⌕</span>
-                <input id="q" type="search" placeholder="제목/요약/태그 검색" autocomplete="off" />
-              </label>
-              <select id="tag" class="select" aria-label="태그 필터">
-                <option value="">모든 태그</option>
-              </select>
+            <div class="cat-box">
+              <div class="cat-head">카테고리</div>
+
+              <div class="cat-root">
+                <button class="cat-link" type="button" data-cat="전체 보기">
+                  <span class="cat-label">전체 보기</span>
+                  <span class="cat-count">(91)</span>
+                  <span class="cat-badge" aria-label="편집">EDIT</span>
+                </button>
+              </div>
+
+              <details class="cat-group" open>
+                <summary>
+                  <span class="cat-label">Coding</span>
+                  <span class="cat-count">(28)</span>
+                </summary>
+                <div class="cat-items" role="list">
+                  <button class="cat-link" type="button" data-cat="Coding/JavaScript">JavaScript</button>
+                  <button class="cat-link" type="button" data-cat="Coding/C">C</button>
+                  <button class="cat-link" type="button" data-cat="Coding/Maria DB">Maria DB</button>
+                  <button class="cat-link" type="button" data-cat="Coding/Theory">Theory</button>
+                </div>
+              </details>
+
+              <details class="cat-group" open>
+                <summary>
+                  <span class="cat-label">Technology</span>
+                </summary>
+                <div class="cat-items" role="list">
+                  <button class="cat-link" type="button" data-cat="Technology/Git">Git</button>
+                  <button class="cat-link" type="button" data-cat="Technology/SpringBoot">SpringBoot</button>
+                  <button class="cat-link" type="button" data-cat="Technology/React">React</button>
+                  <button class="cat-link" type="button" data-cat="Technology/Docker">Docker</button>
+                  <button class="cat-link" type="button" data-cat="Technology/Vue.js">Vue.js</button>
+                  <button class="cat-link" type="button" data-cat="Technology/VS CODE">VS CODE</button>
+                  <button class="cat-link" type="button" data-cat="Technology/Node">Node</button>
+                  <button class="cat-link" type="button" data-cat="Technology/eclipse">eclipse</button>
+                  <button class="cat-link" type="button" data-cat="Technology/Linux">Linux</button>
+                </div>
+              </details>
+
+              <details class="cat-group" open>
+                <summary>
+                  <span class="cat-label">Daily Life</span>
+                </summary>
+                <div class="cat-items" role="list">
+                  <button class="cat-link" type="button" data-cat="Daily Life/Memo">Memo</button>
+                  <button class="cat-link" type="button" data-cat="Daily Life/Exercise">Exercise</button>
+                  <button class="cat-link" type="button" data-cat="Daily Life/ETC">ETC</button>
+                  <button class="cat-link" type="button" data-cat="Daily Life/Bible">Bible</button>
+                </div>
+              </details>
             </div>
-          </div>
+          </aside>
 
-          <div id="postGrid" class="grid" aria-live="polite"></div>
-
-          <div id="emptyState" class="empty" hidden>
-            조건에 맞는 글이 없어요. 검색어/태그를 바꿔보세요.
-          </div>
+          <section class="content">
+            <div class="content-card">
+              <div class="content-kicker muted">홈</div>
+              <h1 class="content-title" id="categoryTitle">카테고리만 먼저 정리해뒀어요.</h1>
+              <p class="content-desc muted" id="categoryDesc">
+                왼쪽에서 카테고리를 선택하면, 이 영역에 선택된 카테고리가 표시됩니다. (아직 글은 작성하지 않습니다)
+              </p>
+              <div class="content-hint" id="categoryHint">
+                <div class="hint-card">
+                  <div class="hint-title">다음 단계</div>
+                  <div class="muted small">
+                    원하면 카테고리별 페이지, RSS, 댓글(giscus)도 이어서 붙일 수 있어요.
+                  </div>
+                </div>
+                <div class="hint-card">
+                  <div class="hint-title">단축키</div>
+                  <div class="muted small">
+                    <code>/</code> 로 카테고리 검색(추가 예정), <code>T</code> 로 테마 전환(추가 예정)
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
-
-      <section class="section" id="about">
-        <div class="container">
-          <div class="section-head">
-            <h2>소개</h2>
-          </div>
-          <div class="prose">
-            <p>
-              이 블로그는 공부하면서 정리한 내용을 올리는 공간입니다. 글은 길게 늘어놓기보다,
-              <strong>핵심 → 예제 → 요약</strong> 순서로 보려는 사람이 빠르게 이해할 수 있게 작성합니다.
-            </p>
-            <ul>
-              <li>새 글은 `posts/posts.json`에 추가하면 자동으로 목록/상세가 렌더링됩니다.</li>
-              <li>원하면 “카테고리/태그 페이지”, “RSS”, “댓글(예: giscus)”도 붙일 수 있어요.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      </div>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="muted small">
-          © <span id="year"></span> haru1813. Built with vanilla HTML/CSS/JS.
+      <div class="footer-glow" aria-hidden="true"></div>
+      <div class="container footer-wrap">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo" aria-hidden="true">H</div>
+            <div class="footer-brand-text">
+              <div class="footer-title">haru1813</div>
+              <div class="muted small">공부 기록을 차곡차곡.</div>
+            </div>
+          </div>
+
+          <div class="footer-links" aria-label="푸터 링크">
+            <a class="footer-link" href="#categories">카테고리</a>
+            <a class="footer-link" href="https://github.com/haru1813" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="footer-link" href="#content">맨 위로</a>
+          </div>
         </div>
-        <a class="muted small" href="#content">위로</a>
+
+        <div class="footer-bottom">
+          <div class="muted small">
+            © <span id="year"></span> haru1813 · Built with vanilla HTML/CSS/JS · GitHub Pages
+          </div>
+          <div class="footer-badges">
+            <span class="footer-pill">빠른 로딩</span>
+            <span class="footer-pill">정적 배포</span>
+            <span class="footer-pill">다크모드</span>
+          </div>
+        </div>
       </div>
     </footer>
 
