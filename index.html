@@ -35,11 +35,21 @@
         </a>
 
         <nav class="nav" aria-label="주요 메뉴">
-          <a class="nav-link" href="#categories">카테고리</a>
           <a class="nav-link" href="https://github.com/haru1813" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
 
         <div class="header-actions">
+          <button
+            class="icon-btn mobile-only"
+            type="button"
+            id="menuToggle"
+            aria-label="카테고리 열기"
+            aria-controls="categoriesDrawer"
+            aria-expanded="false"
+            title="카테고리"
+          >
+            <span class="icon" aria-hidden="true">≡</span>
+          </button>
           <button class="icon-btn" type="button" id="themeToggle" aria-label="테마 전환" title="테마 전환">
             <span class="icon" aria-hidden="true">☾</span>
           </button>
@@ -50,7 +60,9 @@
     <main id="content" class="section" aria-label="카테고리 메인">
       <div class="container">
         <div class="layout" id="categories">
-          <aside class="sidebar" aria-label="카테고리">
+          <button class="drawer-scrim" type="button" id="drawerScrim" aria-label="카테고리 닫기"></button>
+
+          <aside class="sidebar" id="categoriesDrawer" aria-label="카테고리">
             <div class="profile-card">
               <img class="profile-img" src="./assets/image/profile.png" alt="프로필 이미지" width="240" height="240" />
               <div class="profile-meta">
@@ -60,7 +72,12 @@
             </div>
 
             <div class="cat-box">
-              <div class="cat-head">카테고리</div>
+              <div class="cat-head">
+                <span>카테고리</span>
+                <button class="icon-btn drawer-close mobile-only" type="button" id="drawerClose" aria-label="카테고리 닫기" title="닫기">
+                  <span class="icon" aria-hidden="true">×</span>
+                </button>
+              </div>
 
               <div class="cat-root">
                 <button class="cat-link" type="button" data-cat="전체 보기">
@@ -98,6 +115,9 @@
                 <div class="cat-items" role="list">
                   <button class="cat-link" type="button" data-cat="Technology/Git">
                     <span class="cat-label">Git</span><span class="cat-count" data-cat-count="Technology/Git">(0)</span>
+                  </button>
+                  <button class="cat-link" type="button" data-cat="Technology/AI">
+                    <span class="cat-label">AI</span><span class="cat-count" data-cat-count="Technology/AI">(0)</span>
                   </button>
                   <button class="cat-link" type="button" data-cat="Technology/SpringBoot">
                     <span class="cat-label">SpringBoot</span><span class="cat-count" data-cat-count="Technology/SpringBoot">(0)</span>
@@ -175,22 +195,11 @@
               <div class="muted small">공부 기록을 차곡차곡.</div>
             </div>
           </div>
-
-          <div class="footer-links" aria-label="푸터 링크">
-            <a class="footer-link" href="#categories">카테고리</a>
-            <a class="footer-link" href="https://github.com/haru1813" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="footer-link" href="#content">맨 위로</a>
-          </div>
         </div>
 
         <div class="footer-bottom">
           <div class="muted small">
             © <span id="year"></span> haru1813 · Built with vanilla HTML/CSS/JS · GitHub Pages
-          </div>
-          <div class="footer-badges">
-            <span class="footer-pill">빠른 로딩</span>
-            <span class="footer-pill">정적 배포</span>
-            <span class="footer-pill">다크모드</span>
           </div>
         </div>
       </div>

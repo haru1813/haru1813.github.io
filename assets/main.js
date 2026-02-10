@@ -298,6 +298,30 @@ async function initCategories() {
   const links = Array.from(document.querySelectorAll("[data-cat]"));
   if (!title || !desc || !list || !empty || links.length === 0) return;
 
+  const menuToggle = $("#menuToggle");
+  const scrim = $("#drawerScrim");
+  const closeBtn = $("#drawerClose");
+
+  const openDrawer = () => {
+    document.body.classList.add("drawer-open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "true");
+  };
+  const closeDrawer = () => {
+    document.body.classList.remove("drawer-open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+  };
+  const toggleDrawer = () => {
+    if (document.body.classList.contains("drawer-open")) closeDrawer();
+    else openDrawer();
+  };
+
+  if (menuToggle) menuToggle.addEventListener("click", toggleDrawer);
+  if (scrim) scrim.addEventListener("click", closeDrawer);
+  if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
+  });
+
   const u = new URL(window.location.href);
   const initial = u.searchParams.get("cat") || "전체 보기";
 
@@ -378,6 +402,7 @@ async function initCategories() {
     el.addEventListener("click", () => {
       const cat = el.dataset.cat || "";
       setActive(cat);
+      closeDrawer();
       // URL에만 반영(페이지 리로드 없음)
       try {
         const next = new URL(window.location.href);
