@@ -1,0 +1,303 @@
+const POSTS_URL = "./posts/posts.json";
+
+function $(sel, root = document) {
+  return root.querySelector(sel);
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function formatDate(iso) {
+  try {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("ko-KR", { year: "numeric", month: "2-digit", day: "2-digit" });
+  } catch {
+    return iso;
+  }
+}
+
+function readingTimeFromLines(lines) {
+  const text = (lines || []).join("\n").replace(/```[\s\S]*?```/g, "").replace(/[#>*_\-]/g, " ");
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.round(words / 220));
+  return `${minutes}분`;
+}
+
+function uniqueTags(posts) {
+  const s = new Set();
+  for (const p of posts) for (const t of p.tags || []) s.add(t);
+  return Array.from(s).sort((a, b) => a.localeCompare(b));
+}
+
+function mdToHtml(lines) {
+  // 아주 간단한 마크다운 렌더러(헤더/리스트/코드블럭/문단)
+  const out = [];
+  let inCode = false;
+  let codeLang = "";
+  let codeBuf = [];
+  let listOpen = false;
+
+  const flushList = () => {
+    if (listOpen) {
+      out.push("</ul>");
+      listOpen = false;
+    }
+  };
+
+  const flushCode = () => {
+    if (!inCode) return;
+    const code = escapeHtml(codeBuf.join("\n"));
+    out.push(`<pre><code${codeLang ? ` data-lang="${escapeHtml(codeLang)}"` : ""}>${code}</code></pre>`);
+    inCode = false;
+    codeLang = "";
+    codeBuf = [];
+  };
+
+  for (const raw of lines || []) {
+    const line = String(raw ?? "");
+
+    const codeFence = line.match(/^```(\w+)?\s*$/);
+    if (codeFence) {
+      if (!inCode) {
+        flushList();
+        inCode = true;
+        codeLang = codeFence[1] || "";
+      } else {
+        flushCode();
+      }
+      continue;
+    }
+
+    if (inCode) {
+      codeBuf.push(line);
+      continue;
+    }
+
+    const h2 = line.match(/^##\s+(.*)$/);
+    if (h2) {
+      flushList();
+      out.push(`<h2>${escapeHtml(h2[1])}</h2>`);
+      continue;
+    }
+    const h3 = line.match(/^###\s+(.*)$/);
+    if (h3) {
+      flushList();
+      out.push(`<h3>${escapeHtml(h3[1])}</h3>`);
+      continue;
+    }
+    if (/^---\s*$/.test(line)) {
+      flushList();
+      out.push("<hr />");
+      continue;
+    }
+
+    const li = line.match(/^\-\s+(.*)$/);
+    if (li) {
+      if (!listOpen) {
+        out.push("<ul>");
+        listOpen = true;
+      }
+      out.push(`<li>${escapeHtml(li[1])}</li>`);
+      continue;
+    }
+
+    if (line.trim() === "") {
+      flushList();
+      continue;
+    }
+
+    flushList();
+    // inline code `...`
+    const withInlineCode = escapeHtml(line).replace(/`([^`]+)`/g, "<code>$1</code>");
+    out.push(`<p>${withInlineCode}</p>`);
+  }
+
+  flushList();
+  flushCode();
+  return out.join("\n");
+}
+
+async function loadPosts() {
+  const res = await fetch(POSTS_URL, { cache: "no-store" });
+  if (!res.ok) throw new Error(`posts.json 로드 실패: ${res.status}`);
+  const data = await res.json();
+  const posts = Array.isArray(data.posts) ? data.posts : [];
+  // 최신순 정렬
+  posts.sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+  return posts;
+}
+
+function initThemeToggle() {
+  const btn = $("#themeToggle");
+  if (!btn) return;
+
+  const apply = (t) => {
+    document.documentElement.dataset.theme = t;
+    try { localStorage.setItem("theme", t); } catch {}
+    const icon = btn.querySelector(".icon");
+    if (icon) icon.textContent = t === "dark" ? "☾" : "☀";
+  };
+
+  // 초기 아이콘
+  apply(document.documentElement.dataset.theme || "dark");
+
+  btn.addEventListener("click", () => {
+    const cur = document.documentElement.dataset.theme || "dark";
+    apply(cur === "dark" ? "light" : "dark");
+  });
+}
+
+function renderHome(posts) {
+  const grid = $("#postGrid");
+  const empty = $("#emptyState");
+  const q = $("#q");
+  const tagSel = $("#tag");
+  if (!grid || !q || !tagSel) return;
+
+  // 태그 옵션 구성
+  const tags = uniqueTags(posts);
+  for (const t of tags) {
+    const opt = document.createElement("option");
+    opt.value = t;
+    opt.textContent = `#${t}`;
+    tagSel.appendChild(opt);
+  }
+
+  const state = { query: "", tag: "" };
+
+  const matches = (p) => {
+    const qq = state.query.trim().toLowerCase();
+    const tt = state.tag;
+    if (tt && !(p.tags || []).includes(tt)) return false;
+    if (!qq) return true;
+    const hay = `${p.title || ""} ${p.summary || ""} ${(p.tags || []).join(" ")}`.toLowerCase();
+    return hay.includes(qq);
+  };
+
+  const cardHtml = (p) => {
+    const href = `./post.html?id=${encodeURIComponent(p.id)}`;
+    const tagsHtml = (p.tags || [])
+      .slice(0, 5)
+      .map((t) => `<a class="tag" href="./#posts" data-tag="${escapeHtml(t)}">#${escapeHtml(t)}</a>`)
+      .join("");
+
+    return `
+      <a class="card" href="${href}">
+        <h3 class="card-title">${escapeHtml(p.title || "제목 없음")}</h3>
+        <div class="card-meta">
+          <span class="muted small">${escapeHtml(formatDate(p.date || ""))}</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="muted small">읽기 ${escapeHtml(readingTimeFromLines(p.content))}</span>
+        </div>
+        <div class="muted">${escapeHtml(p.summary || "")}</div>
+        <div class="tag-row">${tagsHtml}</div>
+      </a>
+    `;
+  };
+
+  const paint = () => {
+    const items = posts.filter(matches);
+    grid.innerHTML = items.map(cardHtml).join("");
+    empty.hidden = items.length !== 0;
+
+    // 카드 안 태그 클릭 시 필터 적용(해시 이동 없이)
+    grid.querySelectorAll("[data-tag]").forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        const t = el.getAttribute("data-tag") || "";
+        tagSel.value = t;
+        state.tag = t;
+        paint();
+      });
+    });
+  };
+
+  q.addEventListener("input", () => {
+    state.query = q.value;
+    paint();
+  });
+
+  tagSel.addEventListener("change", () => {
+    state.tag = tagSel.value;
+    paint();
+  });
+
+  paint();
+}
+
+function getParam(name) {
+  const u = new URL(window.location.href);
+  return u.searchParams.get(name);
+}
+
+function renderPost(posts) {
+  const id = getParam("id");
+  const article = $("#article");
+  const title = $("#title");
+  const date = $("#date");
+  const body = $("#body");
+  const tagsEl = $("#tags");
+  const rt = $("#readingTime");
+  if (!article || !title || !date || !body || !tagsEl) return;
+
+  const p = posts.find((x) => String(x.id) === String(id)) || null;
+  if (!p) {
+    title.textContent = "글을 찾을 수 없어요.";
+    date.textContent = "";
+    if (rt) rt.textContent = "";
+    body.innerHTML = `<p class="muted">주소가 올바른지 확인해주세요. (예: <code>post.html?id=hello-pages</code>)</p>`;
+    tagsEl.innerHTML = "";
+    document.title = "글 없음 | haru1813 블로그";
+    return;
+  }
+
+  title.textContent = p.title || "제목 없음";
+  date.textContent = formatDate(p.date || "");
+  if (rt) rt.textContent = `· 읽기 ${readingTimeFromLines(p.content)}`;
+  body.innerHTML = mdToHtml(p.content || []);
+
+  tagsEl.innerHTML = (p.tags || [])
+    .map((t) => `<a class="tag" href="./#posts" title="태그로 이동">#${escapeHtml(t)}</a>`)
+    .join("");
+
+  document.title = `${p.title} | haru1813 블로그`;
+}
+
+function setYear() {
+  const y = $("#year");
+  if (y) y.textContent = String(new Date().getFullYear());
+}
+
+async function main() {
+  setYear();
+  initThemeToggle();
+
+  // 홈/상세에서 공통으로 posts 로드
+  let posts = [];
+  try {
+    posts = await loadPosts();
+  } catch (e) {
+    const grid = $("#postGrid");
+    const title = $("#title");
+    const body = $("#body");
+    if (grid) grid.innerHTML = `<div class="empty">글 데이터를 불러오지 못했어요. <span class="muted small">(posts/posts.json 확인)</span></div>`;
+    if (title && body) {
+      title.textContent = "글 데이터를 불러오지 못했어요.";
+      body.innerHTML = `<p class="muted">파일 경로/JSON 형식을 확인해주세요. (${escapeHtml(String(e.message || e))})</p>`;
+    }
+    return;
+  }
+
+  if ($("#postGrid")) renderHome(posts);
+  if ($("#article")) renderPost(posts);
+}
+
+main();
+

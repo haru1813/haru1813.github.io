@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>글 | haru1813 블로그</title>
+    <meta name="description" content="글 상세" />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script>
+      (function () {
+        try {
+          const saved = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const theme = saved || (prefersDark ? "dark" : "light");
+          document.documentElement.dataset.theme = theme;
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#content">본문으로 건너뛰기</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="./">
+          <span class="brand-mark" aria-hidden="true">H</span>
+          <span class="brand-text">
+            <strong>haru1813</strong>
+            <span class="muted">dev blog</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="주요 메뉴">
+          <a class="nav-link" href="./#posts">글</a>
+          <a class="nav-link" href="./#about">소개</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" type="button" id="themeToggle" aria-label="테마 전환" title="테마 전환">
+            <span class="icon" aria-hidden="true">☾</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="./#posts" class="muted small">← 글 목록으로</a>
+        </div>
+
+        <article class="article" id="article" aria-live="polite">
+          <header class="article-head">
+            <h1 id="title">불러오는 중…</h1>
+            <div class="article-meta">
+              <span id="date" class="muted small"></span>
+              <span id="readingTime" class="muted small"></span>
+            </div>
+            <div id="tags" class="tag-row"></div>
+          </header>
+
+          <div class="article-body prose" id="body"></div>
+        </article>
+
+        <div class="article-footer">
+          <a class="btn secondary" href="./#posts">목록</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="muted small">
+          © <span id="year"></span> haru1813
+        </div>
+      </div>
+    </footer>
+
+    <script src="./assets/main.js" defer></script>
+  </body>
+</html>
