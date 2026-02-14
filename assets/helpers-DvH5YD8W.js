@@ -1,2 +1,0 @@
-function a(t){try{const e=new Date(t);return Number.isNaN(e.getTime())?t:e.toLocaleDateString("ko-KR",{year:"numeric",month:"2-digit",day:"2-digit"})}catch{return t}}function i(t){const r=(t||[]).join(`
-`).replace(/```[\s\S]*?```/g,"").replace(/[#>*_\-]/g," ").trim().split(/\s+/).filter(Boolean).length;return`${Math.max(1,Math.round(r/220))}분`}function o(t){return String(t||"").toLowerCase().replace(/\s+/g,"-").replace(/\//g,"-")}export{o as c,a as f,i as r};
