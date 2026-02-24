@@ -1,0 +1,80 @@
+<script setup>
+import ArticleHeader from '@/components/ArticleHeader.vue'
+import ArticleBody from '@/components/ArticleBody.vue'
+
+const post = {
+  id: "java-conditionals",
+  title: "Java 조건문 (if, switch)",
+  date: "2026-02-17",
+  summary: "Java의 if, else if, else, switch-case 조건문 문법을 정리합니다.",
+  category: "Coding/Java",
+  tags: ["java", "조건문", "if", "switch", "basics"],
+  content: [
+    "## if문",
+    "조건이 true일 때 블록을 실행합니다.",
+    "",
+    "```java",
+    "if (condition) {",
+    "    // 조건이 true일 때 실행",
+    "}",
+    "",
+    "if (score >= 90) {",
+    "    System.out.println(\"A등급\");",
+    "}",
+    "```",
+    "",
+    "## else if, else",
+    "```java",
+    "if (selectNo == 1) {",
+    "    createAccount();",
+    "} else if (selectNo == 2) {",
+    "    accountList();",
+    "} else if (selectNo == 3) {",
+    "    deposit();",
+    "} else {",
+    "    run = false;",
+    "}",
+    "```",
+    "",
+    "## switch문",
+    "정수, 문자, 문자열, enum 타입을 조건으로 사용합니다. 각 case마다 `break`로 빠져나옵니다.",
+    "",
+    "```java",
+    "switch (inputChar) {",
+    "    case '1':",
+    "        System.out.println(\"예금 조회\");",
+    "        break;",
+    "    case '2':",
+    "        System.out.println(\"예금 출금\");",
+    "        break;",
+    "    case '3':",
+    "        System.out.println(\"예금 입금\");",
+    "        break;",
+    "    default:",
+    "        System.out.println(\"잘못된 선택\");",
+    "}",
+    "```",
+    "",
+    "## enum과 switch",
+    "```java",
+    "switch (week) {",
+    "    case 1: today = Week.SUNDAY; break;",
+    "    case 2: today = Week.MONDAY; break;",
+    "    case 3: today = Week.TUESDAY; break;",
+    "    // ...",
+    "}",
+    "```",
+    "",
+    "---",
+    "### 요약",
+    "- `if (조건) { }` / `else if` / `else`",
+    "- `switch (값) { case x: break; default: }`",
+    "- switch는 break 없으면 아래 case로 fall-through"
+  ]
+}
+</script>
+
+<template>
+  <ArticleHeader :post="post" />
+  <ArticleBody :content="post.content" />
+</template>

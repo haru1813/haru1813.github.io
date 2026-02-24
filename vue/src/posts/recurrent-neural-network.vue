@@ -1,0 +1,80 @@
+<script setup>
+import ArticleHeader from '@/components/ArticleHeader.vue'
+import ArticleBody from '@/components/ArticleBody.vue'
+
+const post = {
+  id: "recurrent-neural-network",
+  title: "순환 신경망(Recurrent Neural Network, RNN)",
+  date: "2026-02-17",
+  summary: "RNN은 시퀀스·시계열 데이터를 처리하는 신경망입니다. 순환 연결, SimpleRNN, 임베딩, pad_sequences를 정리합니다.",
+  category: "Technology/AI",
+  tags: ["ai", "deep-learning", "rnn", "keras", "sequence"],
+  content: [
+    "## 순환 신경망이란?",
+    "**RNN**은 **이전 타임스텝의 출력(은닉 상태)**을 다시 입력에 넣어 **순환**하는 구조입니다. 문장, 시계열처럼 **순서가 있는 데이터**에 적합합니다.",
+    "",
+    "| 특징 | 설명 |",
+    "|------|------|",
+    "| 시퀀스 처리 | 단어·시점 순서를 반영 |",
+    "| 은닉 상태 | 이전 정보를 다음으로 전달 |",
+    "| 장기 의존성 | 기본 RNN은 길은 시퀀스에서 한계 → LSTM·GRU 사용 |",
+    "",
+    "---",
+    "## SimpleRNN",
+    "가장 단순한 RNN 층입니다. 이전 은닉 상태와 현재 입력을 함께 사용합니다.",
+    "",
+    "```python",
+    "model.add(keras.layers.SimpleRNN(8))  # 8개 유닛",
+    "```",
+    "",
+    "---",
+    "## Embedding",
+    "**Embedding**은 정수 인덱스(단어 ID)를 **저차원 밀집 벡터**로 변환합니다. 텍스트 분류에서 자주 사용합니다.",
+    "",
+    "```python",
+    "model.add(keras.layers.Embedding(500, 16, input_shape=(100,)))  # 500 단어, 16차원",
+    "```",
+    "",
+    "---",
+    "## IMDB 리뷰 분류 예시",
+    "```python",
+    "from tensorflow.keras.datasets import imdb",
+    "from tensorflow.keras.preprocessing.sequence import pad_sequences",
+    "",
+    "(train_input, train_target), (test_input, test_target) = imdb.load_data(num_words=500)",
+    "",
+    "train_seq = pad_sequences(train_input, maxlen=100)  # 길이 100으로 자르거나 패딩",
+    "",
+    "model = keras.Sequential()",
+    "model.add(keras.layers.Embedding(500, 16, input_shape=(100,)))",
+    "model.add(keras.layers.SimpleRNN(8))",
+    "model.add(keras.layers.Dense(1, activation='sigmoid'))",
+    "",
+    "model.compile(optimizer='adam', loss='binary_crossentropy', metrics='accuracy')",
+    "model.fit(train_seq, train_target, epochs=5)",
+    "```",
+    "",
+    "---",
+    "## pad_sequences",
+    "시퀀스 길이가 다를 때 **같은 길이**로 맞춥니다. 짧으면 앞을 0으로 채우고, 길면 잘라냅니다.",
+    "",
+    "```python",
+    "train_seq = pad_sequences(train_input, maxlen=100)",
+    "```",
+    "",
+    "---",
+    "## 정리",
+    "| 용어 | 요약 |",
+    "|------|------|",
+    "| RNN | 순서가 있는 데이터용, 은닉 상태 순환 |",
+    "| SimpleRNN | 기본 RNN 층 |",
+    "| Embedding | 단어 ID → 밀집 벡터 |",
+    "| pad_sequences | 시퀀스 길이 통일 |"
+  ]
+}
+</script>
+
+<template>
+  <ArticleHeader :post="post" />
+  <ArticleBody :content="post.content" />
+</template>
