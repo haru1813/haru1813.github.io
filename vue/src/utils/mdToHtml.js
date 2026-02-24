@@ -66,7 +66,16 @@ export function mdToHtml(lines) {
 
   const isTableRow = (s) => /^\s*\|.+\|\s*$/.test(s)
 
+  // 문자열에 \n이 있으면 각 줄을 별도로 처리 (테이블 인식용)
+  const allLines = []
   for (const raw of lines || []) {
+    const s = String(raw ?? '')
+    for (const part of s.split('\n')) {
+      allLines.push(part)
+    }
+  }
+
+  for (const raw of allLines) {
     const line = String(raw ?? '')
 
     const codeFence = line.match(/^```(\w+)?\s*$/)

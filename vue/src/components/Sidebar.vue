@@ -40,13 +40,13 @@ const currentCat = computed(() => {
 
 const groups = [
   { name: 'Domain', items: ['Domain/회계', 'Domain/주식', 'Domain/경제', 'Domain/세금', 'Domain/부동산', 'Domain/금융', 'Domain/법', 'Domain/Theory'] },
-  { name: 'Coding', items: ['Coding/JavaScript', 'Coding/Python', 'Coding/Maria DB', 'Coding/Theory'] },
+  { name: 'Coding', items: ['Coding/JavaScript', 'Coding/Java', 'Coding/Python'] },
   {
     name: 'Technology',
     items: [
       'Technology/Git', 'Technology/AI', 'Technology/Design-Pattern', 'Technology/SOLID',
-      'Technology/Android', 'Technology/SpringBoot', 'Technology/React', 'Technology/Docker',
-      'Technology/Vue.js', 'Technology/VS CODE', 'Technology/Node', 'Technology/eclipse', 'Technology/Linux',
+      'Technology/Theory', 'Technology/Android', 'Technology/SpringBoot', 'Technology/React', 'Technology/Docker',
+      'Technology/Vue.js', 'Technology/Node', 'Technology/Linux', 'Technology/Unity', 'Technology/Unreal',
     ],
   },
   { name: 'Daily Life', items: ['Daily Life/Memo', 'Daily Life/Exercise', 'Daily Life/ETC', 'Daily Life/Bible'] },

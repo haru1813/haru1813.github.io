@@ -1,0 +1,82 @@
+<script setup>
+import ArticleHeader from '@/components/ArticleHeader.vue'
+import ArticleBody from '@/components/ArticleBody.vue'
+
+const post = {
+  id: "python-dict",
+  title: "Python 딕셔너리 (Dictionary)",
+  date: "2026-02-17",
+  summary: "Python 딕셔너리의 생성, 키로 값 접근, get(), in, for 반복, items()를 정리합니다.",
+  category: "Coding/Python",
+  tags: ["python", "딕셔너리", "dict", "basics"],
+  content: [
+    "## 딕셔너리란?",
+    "키(key)와 값(value) 쌍으로 저장하는 자료형입니다. `{}`로 생성합니다.",
+    "",
+    "```python",
+    "dictionary = {",
+    "    \"name\": \"7D 건조 망고\",",
+    "    \"type\": \"당절임\",",
+    "    \"origin\": \"필리핀\"",
+    "}",
+    "```",
+    "",
+    "## 값 접근·수정·추가",
+    "| 연산 | 설명 | 예시 |",
+    "|------|------|------|",
+    "| dict[key] | 값 조회 (없으면 KeyError) | dictionary[\"name\"] |",
+    "| dict[key] = val | 값 수정 또는 추가 | dictionary[\"name\"] = \"8D\" |",
+    "",
+    "```python",
+    "print(dictionary[\"name\"])      # 7D 건조 망고",
+    "dictionary[\"name\"] = \"8D 건조 망고\"  # 수정",
+    "dictionary[\"new_key\"] = \"추가\"      # 새 키 추가",
+    "```",
+    "",
+    "## get() - 안전한 조회",
+    "키가 없으면 `None`을 반환합니다. `KeyError`를 피할 수 있습니다.",
+    "",
+    "```python",
+    "value = dictionary.get(\"없는키\")  # None",
+    "value = dictionary.get(\"없는키\", \"기본값\")  # 기본값 반환",
+    "```",
+    "",
+    "## in - 키 존재 여부",
+    "```python",
+    "if \"name\" in dictionary:",
+    "    print(dictionary[\"name\"])",
+    "else:",
+    "    print(\"존재하지 않는 키입니다.\")",
+    "```",
+    "",
+    "## for로 딕셔너리 순회",
+    "```python",
+    "for key in dictionary:",
+    "    print(key, \":\", dictionary[key])",
+    "```",
+    "",
+    "## items() - 키와 값 함께 순회",
+    "```python",
+    "for key, element in dictionary.items():",
+    "    print(\"dictionary[\" + key + \"] =\", element)",
+    "```",
+    "",
+    "## 요소 제거",
+    "```python",
+    "del dictionary[\"name\"]",
+    "```",
+    "",
+    "---",
+    "### 요약",
+    "- `{key: value}` 형태로 딕셔너리 생성",
+    "- `dict[key]`로 접근, `dict.get(key)`로 안전 조회",
+    "- `in`으로 키 존재 확인",
+    "- `for key in dict` 또는 `for k, v in dict.items()`"
+  ]
+}
+</script>
+
+<template>
+  <ArticleHeader :post="post" />
+  <ArticleBody :content="post.content" />
+</template>
