@@ -157,6 +157,27 @@ import Post_unity_playable_api from './unity-playable-api.vue'
 import Post_unity_ui_toolkit from './unity-ui-toolkit.vue'
 import Post_unity_gizmos from './unity-gizmos.vue'
 import Post_unity_scriptable_object from './unity-scriptable-object.vue'
+import Post_linux_overview from './linux-overview.vue'
+import Post_linux_history from './linux-history.vue'
+import Post_linux_partition from './linux-partition.vue'
+import Post_linux_bios_uefi from './linux-bios-uefi.vue'
+import Post_linux_lvm from './linux-lvm.vue'
+import Post_linux_raid from './linux-raid.vue'
+import Post_linux_file_directory_commands from './linux-file-directory-commands.vue'
+import Post_linux_user_management from './linux-user-management.vue'
+import Post_linux_text_editors from './linux-text-editors.vue'
+import Post_chrome_devtools from './chrome-devtools.vue'
+import Post_js_array_methods from './js-array-methods.vue'
+import Post_ts_overview_basic_types from './ts-overview-basic-types.vue'
+import Post_ts_interface_type_alias from './ts-interface-type-alias.vue'
+import Post_ts_generics_advanced from './ts-generics-advanced.vue'
+import Post_ts_class_module from './ts-class-module.vue'
+import Post_hacking_dos_attack from './hacking-dos-attack.vue'
+import Post_js_data_types_operators from './js-data-types-operators.vue'
+import Post_js_functions from './js-functions.vue'
+import Post_js_execution_context_closure from './js-execution-context-closure.vue'
+import Post_js_oop_patterns from './js-oop-patterns.vue'
+import Post_js_functional_programming from './js-functional-programming.vue'
 import Post_unreal_first_project from './unreal-first-project.vue'
 import Post_unreal_blueprint_basics from './unreal-blueprint-basics.vue'
 import Post_unreal_actor_component from './unreal-actor-component.vue'
@@ -168,6 +189,47 @@ import Post_unreal_tutorial_02_room from './unreal-tutorial-02-room.vue'
 import Post_unreal_tutorial_03_character from './unreal-tutorial-03-character.vue'
 import Post_unreal_tutorial_04_trigger from './unreal-tutorial-04-trigger.vue'
 import Post_unreal_tutorial_05_collectible from './unreal-tutorial-05-collectible.vue'
+import Post_react_overview from './react-overview.vue'
+import Post_react_components from './react-components.vue'
+import Post_nodejs_overview_module from './nodejs-overview-module.vue'
+import Post_nodejs_async_patterns from './nodejs-async-patterns.vue'
+import Post_nodejs_express_mongodb from './nodejs-express-mongodb.vue'
+import Post_nodejs_board_project from './nodejs-board-project.vue'
+import Post_nodejs_nestjs_basics from './nodejs-nestjs-basics.vue'
+import Post_nodejs_nestjs_auth from './nodejs-nestjs-auth.vue'
+import Post_nodejs_nestjs_fileupload_websocket from './nodejs-nestjs-fileupload-websocket.vue'
+import Post_csharp_basics_types_operators from './csharp-basics-types-operators.vue'
+import Post_csharp_control_methods from './csharp-control-methods.vue'
+import Post_csharp_class_oop from './csharp-class-oop.vue'
+import Post_csharp_property_collection_generic from './csharp-property-collection-generic.vue'
+import Post_csharp_exception_delegate_event from './csharp-exception-delegate-event.vue'
+import Post_csharp_lambda_linq_async from './csharp-lambda-linq-async.vue'
+import Post_csharp_reflection_attribute from './csharp-reflection-attribute.vue'
+import Post_csharp_dynamic from './csharp-dynamic.vue'
+import Post_csharp_file_io from './csharp-file-io.vue'
+import Post_csharp_network from './csharp-network.vue'
+
+const meta_nodejs_overview_module = { id: "nodejs-overview-module", title: "Node.js 개요와 모듈 시스템", date: "2026-02-25", summary: "Node.js란 무엇인지, npm 사용법, CommonJS 모듈 시스템(require/module.exports), npm 스크립트 라이프사이클, 로컬 패키지 개발까지 Node.js의 기초를 정리합니다.", category: "Technology/Node.js", tags: ["nodejs","npm","module","commonjs","backend"], content: [] }
+const meta_nodejs_async_patterns = { id: "nodejs-async-patterns", title: "Node.js 비동기 처리: 콜백 → Promise → async/await", date: "2026-02-25", summary: "Node.js의 비동기 처리 방식 3가지(콜백, Promise, async/await)를 회원가입 예제와 API 호출 예제로 비교하며 정리합니다.", category: "Technology/Node.js", tags: ["nodejs","async","promise","callback","await","javascript"], content: [] }
+const meta_nodejs_express_mongodb = { id: "nodejs-express-mongodb", title: "Express.js와 MongoDB로 REST API 만들기", date: "2026-02-25", summary: "Express.js 기본 서버 구축, 미들웨어, RESTful API 설계, MongoDB 네이티브 드라이버와 Mongoose ODM으로 CRUD API를 구현하는 방법을 정리합니다.", category: "Technology/Node.js", tags: ["nodejs","express","mongodb","mongoose","rest-api","crud"], content: [] }
+const meta_nodejs_board_project = { id: "nodejs-board-project", title: "Express + MongoDB + Handlebars 게시판 프로젝트", date: "2026-02-25", summary: "Express, MongoDB, Handlebars 템플릿 엔진을 활용한 실전 게시판 프로젝트입니다. 서비스 레이어 분리, 페이지네이션, 댓글 기능, 검색까지 구현합니다.", category: "Technology/Node.js", tags: ["nodejs","express","mongodb","handlebars","board","project","pagination"], content: [] }
+const meta_nodejs_nestjs_basics = { id: "nodejs-nestjs-basics", title: "NestJS 시작하기: 구조, CRUD, 설정 관리", date: "2026-02-25", summary: "NestJS의 핵심 구조(Module, Controller, Service), Repository 패턴을 활용한 블로그 CRUD, 환경별 설정 관리(ConfigModule)까지 정리합니다.", category: "Technology/Node.js", tags: ["nodejs","nestjs","module","controller","service","repository","config"], content: [] }
+const meta_nodejs_nestjs_auth = { id: "nodejs-nestjs-auth", title: "NestJS 인증과 보안: Passport, Guard, 세션, OAuth", date: "2026-02-25", summary: "NestJS에서 Passport.js를 활용한 로컬 로그인, Google OAuth, 세션/쿠키 기반 인증, Guard를 이용한 라우트 보호, bcrypt 비밀번호 암호화를 정리합니다.", category: "Technology/Node.js", tags: ["nodejs","nestjs","passport","auth","guard","session","oauth","bcrypt"], content: [] }
+const meta_nodejs_nestjs_fileupload_websocket = { id: "nodejs-nestjs-fileupload-websocket", title: "NestJS 파일 업로드와 WebSocket 실시간 통신", date: "2026-02-25", summary: "NestJS에서 Multer로 파일 업로드를 처리하고, WebSocket과 Socket.io를 활용한 실시간 채팅을 구현하는 방법을 정리합니다.", category: "Technology/Node.js", tags: ["nodejs","nestjs","multer","websocket","socket.io","fileupload","realtime","chat"], content: [] }
+
+const meta_csharp_basics_types_operators = { id: "csharp-basics-types-operators", title: "C# 기초: 데이터 타입과 연산자", date: "2026-02-25", summary: "C# 프로그램 구조, 정수/실수/문자열/bool/enum/nullable 타입, 박싱/언박싱, 형변환, 문자열 보간, 산술/비교/논리/비트/null 병합 연산자를 정리합니다.", category: "Coding/C#", tags: ["csharp","dotnet","types","operators","string","enum","nullable","basics"], content: [] }
+const meta_csharp_control_methods = { id: "csharp-control-methods", title: "C# 제어문과 메서드", date: "2026-02-25", summary: "if/switch/for/while/foreach 제어문과 ref/out/params 매개변수, 오버로딩, 로컬 함수, ref return 등 메서드의 다양한 기능을 정리합니다.", category: "Coding/C#", tags: ["csharp","control-flow","method","ref","out","params","switch","foreach"], content: [] }
+const meta_csharp_class_oop = { id: "csharp-class-oop", title: "C# 클래스와 객체지향", date: "2026-02-25", summary: "클래스, 생성자/소멸자, 상속, 오버라이딩, 추상 클래스, 인터페이스, 구조체, 튜플, 확장 메서드 등 C# 객체지향 프로그래밍의 핵심을 정리합니다.", category: "Coding/C#", tags: ["csharp","class","oop","inheritance","interface","abstract","struct","tuple"], content: [] }
+const meta_csharp_property_collection_generic = { id: "csharp-property-collection-generic", title: "C# 프로퍼티, 컬렉션, 제네릭", date: "2026-02-25", summary: "프로퍼티, init 전용 접근자, record, 배열, List/Queue/Stack/Dictionary, 제네릭과 제약 조건, yield 등을 정리합니다.", category: "Coding/C#", tags: ["csharp","property","record","array","collection","generic","yield","list","dictionary"], content: [] }
+const meta_csharp_exception_delegate_event = { id: "csharp-exception-delegate-event", title: "C# 예외 처리와 델리게이트", date: "2026-02-25", summary: "try/catch/finally, 사용자 정의 예외, 예외 필터링, 델리게이트, 델리게이트 체인, 익명 메서드, 이벤트를 정리합니다.", category: "Coding/C#", tags: ["csharp","exception","delegate","event","try-catch","anonymous-method","callback"], content: [] }
+const meta_csharp_lambda_linq_async = { id: "csharp-lambda-linq-async", title: "C# 람다, LINQ, 비동기 프로그래밍", date: "2026-02-25", summary: "람다 식, Func/Action, LINQ 쿼리(where/orderby/group/join), Thread, Task, async/await 등 C#의 고급 기능을 정리합니다.", category: "Coding/C#", tags: ["csharp","lambda","linq","async","await","task","thread","func","action"], content: [] }
+const meta_csharp_reflection_attribute = { id: "csharp-reflection-attribute", title: "C# 리플렉션과 어트리뷰트", date: "2026-02-25", summary: "어트리뷰트(Obsolete, 사용자 정의), 리플렉션(Type, FieldInfo, MethodInfo), 동적 인스턴스 생성, 호출자 정보, Emit까지 정리합니다.", category: "Coding/C#", tags: ["csharp","reflection","attribute","type","emit","dynamic","metadata"], content: [] }
+const meta_csharp_dynamic = { id: "csharp-dynamic", title: "C# dynamic 형식", date: "2026-02-25", summary: "dynamic 타입의 개념, var와의 차이, 덕 타이핑, COM Interop, DLR(Dynamic Language Runtime), ExpandoObject 등을 정리합니다.", category: "Coding/C#", tags: ["csharp","dynamic","duck-typing","dlr","com-interop","expandoobject"], content: [] }
+const meta_csharp_file_io = { id: "csharp-file-io", title: "C# 파일 다루기", date: "2026-02-25", summary: "Stream, FileStream, StreamReader/Writer, BinaryReader/Writer, 디렉터리/파일 조작, using 선언, 직렬화까지 C# 파일 I/O를 정리합니다.", category: "Coding/C#", tags: ["csharp","file","stream","io","serialization","directory","binary","text"], content: [] }
+const meta_csharp_network = { id: "csharp-network", title: "C# 네트워크 프로그래밍", date: "2026-02-25", summary: "TCP 소켓, TcpListener/TcpClient, NetworkStream, Echo 서버/클라이언트, 커스텀 프로토콜 기반 파일 업로드 프로젝트를 정리합니다.", category: "Coding/C#", tags: ["csharp","network","tcp","socket","tcplistener","tcpclient","file-upload","protocol"], content: [] }
+
+const meta_react_overview = { id: "react-overview", title: "React 개요 및 프로젝트 시작하기", date: "2026-02-25", summary: "React란 무엇인지, 왜 사용하는지, 프로젝트 생성(Vite), JSX 문법, 컴포넌트, props, state, 이벤트 처리, 조건부/리스트 렌더링, useEffect까지 React의 핵심 기초를 정리합니다.", category: "Technology/React", tags: ["react","jsx","component","props","state","hooks","vite","basics"], content: [] }
+const meta_react_components = { id: "react-components", title: "React 컴포넌트: 함수형, 화살표, 클래스 컴포넌트", date: "2026-02-25", summary: "React의 3가지 컴포넌트 작성 방식(함수 컴포넌트, 화살표 컴포넌트, 클래스 컴포넌트)을 JavaScript와 TypeScript 예제로 비교하며 정리합니다.", category: "Technology/React", tags: ["react","component","function","arrow","class","typescript","javascript"], content: [] }
 
 const meta_solid_overview = { id: "solid-overview", title: "SOLID 원칙 개요", date: "2026-02-11", summary: "SOLID는 객체지향 설계의 5가지 핵심 원칙입니다. Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion를 한눈에 정리합니다.", category: "Technology/SOLID", tags: ["theory","solid","oop","design-principles"], content: ["## SOLID란?", "SOLID는 로버트 C. 마틴(Robert C. Martin)이 정리한 객체지향 설계의 5가지 핵심 원칙의 머리글자입니다.", "", "| 원칙 | 영어 | 한글 | 한 줄 요약 |", "|------|------|------|------------|", "| S | Single Responsibility | 단일 책임 | 한 클래스는 하나의 변경 이유만 |", "| O | Open/Closed | 개방-폐쇄 | 확장에는 열려 있고, 수정에는 닫혀 있어야 함 |", "| L | Liskov Substitution | 리스코프 치환 | 하위 타입은 상위 타입을 대체 가능해야 함 |", "| I | Interface Segregation | 인터페이스 분리 | 사용하지 않는 메서드에 의존하지 말 것 |", "| D | Dependency Inversion | 의존성 역전 | 구체가 아니라 추상에 의존할 것 |", "", "## 왜 SOLID를 지킬까", "- 유지보수성: 변경 범위를 줄이고, 버그를 줄임", "- 테스트 용이성: 의존성 분리/역전으로 테스트가 쉬워짐", "- 확장성: 새 기능 추가 시 기존 코드 수정 최소화", "", "---", "### 요약", "SOLID는 변경에 강한 설계를 위한 5가지 원칙입니다. SRP, OCP, LSP, ISP, DIP를 순서대로 익히면 좋습니다."] }
 const meta_mount_overview = { id: "mount-overview", title: "마운트(Mount)란?", date: "2026-02-11", summary: "마운트는 저장 장치·파일시스템을 특정 경로(마운트 포인트)에 연결해 접근 가능하게 만드는 것입니다. Linux mount/umount, Windows 드라이브 문자, Docker 볼륨까지 정리합니다.", category: "Technology/Theory", tags: ["theory","mount","filesystem","linux","docker","storage"], content: ["## 한 줄 요약", "마운트(Mount)는 저장 장치나 파일시스템을 디렉터리 트리의 특정 경로에 붙여서 파일처럼 접근할 수 있게 만드는 것입니다.", "", "## 마운트란?", "컴퓨터에는 디스크, USB, 네트워크 공유 폴더 등 여러 저장 공간이 있습니다. 이들을 어디서 접근할지 정해 주는 것이 마운트입니다.", "", "- 마운트 포인트(Mount Point): 파일시스템이 붙는 디렉터리 경로", "- 마운트: 특정 경로에 저장 공간을 연결하는 행위", "- 언마운트(Unmount): 연결을 끊는 행위", "", "## Linux에서의 마운트", "```bash", "mount /dev/sdb1 /mnt/usb", "umount /mnt/usb", "mount", "df -h", "```", "", "### /etc/fstab", "시스템 부팅 시 자동으로 마운트하려면 /etc/fstab에 등록합니다.", "", "### bind mount", "이미 있는 디렉터리를 다른 경로에서도 보이게 할 때 사용합니다.", "", "```bash", "mount --bind /원본/경로 /다른/경로", "```", "", "## Windows에서의 마운트", "Windows는 드라이브 문자(C:, D:, E: 등)로 접근합니다. 새 디스크·USB를 꽂으면 자동 할당됩니다.", "", "## Docker에서의 마운트", "| 방식 | 설명 | 예시 |", "|------|------|------|", "| 볼륨 마운트 | 도커가 관리하는 볼륨을 컨테이너에 연결 | -v myvol:/app/data |", "| 바인드 마운트 | 호스트의 특정 경로를 그대로 연결 | -v /data:/app/data |", "", "---", "### 요약", "마운트는 디스크·USB·네트워크 공유·도커 볼륨을 특정 경로에 연결해 파일처럼 접근하게 만드는 것입니다."] }
@@ -311,6 +373,27 @@ const meta_unity_playable_api = { id: "unity-playable-api", title: "Playable API
 const meta_unity_ui_toolkit = { id: "unity-ui-toolkit", title: "UI Toolkit이란?", date: "2026-02-24", summary: "UI Toolkit은 Unity의 차세대 UI 시스템으로, 웹(HTML/CSS)과 유사한 UXML·USS 기반 선언적 UI를 제공합니다. 에디터 확장과 런타임 UI 모두에 사용할 수 있습니다.", category: "Technology/Unity", tags: ["unity","ui-toolkit","uxml","uss","visual-element","runtime-ui","basics"] }
 const meta_unity_gizmos = { id: "unity-gizmos", title: "Gizmos(기즈모)란?", date: "2026-02-24", summary: "Gizmos는 Unity 에디터의 씬 뷰에서 디버깅·시각화 용도로 선, 구, 아이콘 등을 그리는 기능입니다. OnDrawGizmos, OnDrawGizmosSelected, Handles까지 정리합니다.", category: "Technology/Unity", tags: ["unity","gizmos","debug","editor","handles","scene-view","basics"] }
 const meta_unity_scriptable_object = { id: "unity-scriptable-object", title: "ScriptableObject란?", date: "2026-02-24", summary: "ScriptableObject는 MonoBehaviour 없이 데이터를 에셋으로 저장·공유하는 Unity 클래스입니다. 게임 설정, 아이템 DB, 이벤트 채널 등에 활용되며, 메모리 효율과 데이터 관리에 유리합니다.", category: "Technology/Unity", tags: ["unity","scriptable-object","data","asset","architecture","basics"] }
+const meta_linux_overview = { id: "linux-overview", title: "리눅스 개요", date: "2026-02-24", summary: "리눅스는 오픈소스 유닉스 계열 운영체제입니다. 특징과 장단점, 디렉토리 구조(/, /bin, /etc, /home, /var 등)와 각 디렉토리의 역할을 정리합니다.", category: "Technology/Linux", tags: ["linux","os","directory","filesystem","open-source","basics"] }
+const meta_linux_history = { id: "linux-history", title: "리눅스의 역사", date: "2026-02-24", summary: "유닉스에서 시작된 리눅스의 탄생 배경, 리누스 토르발스의 커널 개발, GNU 프로젝트와의 결합, 주요 배포판의 등장과 현재까지의 발전 흐름을 정리합니다.", category: "Technology/Linux", tags: ["linux","history","unix","gnu","kernel","open-source","basics"] }
+const meta_linux_partition = { id: "linux-partition", title: "리눅스 파티션(Partition)이란?", date: "2026-02-24", summary: "파티션은 하나의 디스크를 논리적으로 나눈 영역입니다. MBR/GPT 파티션 테이블, 파일시스템(ext4, xfs), swap, 마운트, fdisk/lsblk 명령어까지 정리합니다.", category: "Technology/Linux", tags: ["linux","partition","filesystem","mount","disk","mbr","gpt","basics"] }
+const meta_linux_bios_uefi = { id: "linux-bios-uefi", title: "BIOS와 UEFI란? - 컴퓨터 부팅의 시작", date: "2026-02-24", summary: "BIOS와 UEFI는 컴퓨터 전원을 켰을 때 하드웨어를 초기화하고 OS를 불러오는 펌웨어입니다. BIOS에서 UEFI로의 전환, 부팅 흐름, Secure Boot, ESP까지 정리합니다.", category: "Technology/Linux", tags: ["linux","bios","uefi","boot","firmware","secure-boot","esp","basics"] }
+const meta_linux_lvm = { id: "linux-lvm", title: "LVM(Logical Volume Manager)이란?", date: "2026-02-24", summary: "LVM은 물리 디스크를 논리적으로 묶어 유연하게 파티션 크기를 조절할 수 있는 리눅스 디스크 관리 기술입니다. PV, VG, LV 개념과 확장·축소·스냅샷까지 정리합니다.", category: "Technology/Linux", tags: ["linux","lvm","disk","partition","volume","storage","basics"] }
+const meta_linux_raid = { id: "linux-raid", title: "RAID란?", date: "2026-02-24", summary: "RAID는 여러 디스크를 묶어 성능·안정성을 높이는 기술입니다. RAID 0/1/5/6/10의 구조와 차이, 하드웨어·소프트웨어 RAID, 리눅스 mdadm 사용법까지 정리합니다.", category: "Technology/Linux", tags: ["linux","raid","disk","storage","redundancy","mdadm","basics"] }
+const meta_linux_file_directory_commands = { id: "linux-file-directory-commands", title: "리눅스 디렉터리 및 파일 명령어", date: "2026-02-24", summary: "리눅스에서 디렉터리와 파일을 다루는 핵심 명령어를 정리합니다. ls, cd, mkdir, cp, mv, rm, find, cat, head, tail, chmod, chown 등 실무에서 자주 쓰는 명령어와 옵션을 예제와 함께 설명합니다.", category: "Technology/Linux", tags: ["linux","command","file","directory","ls","cp","mv","rm","chmod","basics"] }
+const meta_linux_user_management = { id: "linux-user-management", title: "리눅스 사용자 생성 및 계정 관리 명령어", date: "2026-02-24", summary: "리눅스에서 사용자와 그룹을 생성·수정·삭제하는 핵심 명령어를 정리합니다. useradd, usermod, userdel, passwd, groupadd, su, sudo 등 계정 관리에 필요한 명령어를 예제와 함께 설명합니다.", category: "Technology/Linux", tags: ["linux","user","group","useradd","usermod","passwd","sudo","account","basics"] }
+const meta_linux_text_editors = { id: "linux-text-editors", title: "리눅스 텍스트 에디터 - vi/vim & nano", date: "2026-02-24", summary: "리눅스에서 가장 많이 사용하는 텍스트 에디터인 vi/vim과 nano의 사용법을 정리합니다. vim의 모드 전환, 커서 이동, 편집, 검색/치환, 저장/종료 명령과 nano의 기본 조작법을 예제와 함께 설명합니다.", category: "Technology/Linux", tags: ["linux","vi","vim","nano","editor","text-editor","basics"] }
+const meta_chrome_devtools = { id: "chrome-devtools", title: "크롬 개발자 도구(DevTools) 사용법", date: "2026-02-24", summary: "Chrome DevTools의 핵심 패널(Elements, Console, Sources, Network, Performance, Application)별 기능과 실전 활용법을 정리합니다. 웹 개발 디버깅에 필수적인 도구를 예제와 함께 설명합니다.", category: "Technology/Theory", tags: ["chrome","devtools","debugging","frontend","network","console","performance","basics"] }
+const meta_js_array_methods = { id: "js-array-methods", title: "배열의 내장 함수 (Array Methods)", date: "2026-02-25", summary: "자바스크립트/타입스크립트 배열의 핵심 내장 함수를 정리합니다. forEach, map, filter, reduce, find, some, every, sort, splice, slice, concat, flat, includes 등 실무에서 자주 쓰는 메서드를 JS/TS 예제와 함께 설명합니다.", category: "Coding/JavaScript", tags: ["javascript","typescript","array","map","filter","reduce","sort","method","basics"] }
+const meta_ts_overview_basic_types = { id: "ts-overview-basic-types", title: "TypeScript 개요와 기본 타입", date: "2026-02-24", summary: "TypeScript란 무엇인지, 왜 사용하는지, 설치와 설정 방법, 그리고 기본 타입(string, number, boolean, array, tuple, enum, any, unknown, void, never)을 예제와 함께 정리합니다.", category: "Coding/JavaScript", tags: ["typescript","javascript","type","setup","tsc","basics"] }
+const meta_ts_interface_type_alias = { id: "ts-interface-type-alias", title: "TypeScript 인터페이스와 타입 별칭", date: "2026-02-24", summary: "TypeScript에서 객체 구조를 정의하는 interface와 type의 문법, 확장(extends/&), 선택적·읽기전용 프로퍼티, 인덱스 시그니처, 함수 타입 정의, 그리고 interface vs type 차이를 정리합니다.", category: "Coding/JavaScript", tags: ["typescript","interface","type","extends","intersection","readonly","basics"] }
+const meta_ts_generics_advanced = { id: "ts-generics-advanced", title: "TypeScript 제네릭과 고급 타입", date: "2026-02-24", summary: "TypeScript의 제네릭(Generics), 타입 가드(Type Guard), 유틸리티 타입(Partial, Required, Pick, Omit, Record, Readonly), 매핑 타입, 조건부 타입, 템플릿 리터럴 타입을 예제와 함께 정리합니다.", category: "Coding/JavaScript", tags: ["typescript","generics","utility-type","type-guard","partial","pick","omit","advanced"] }
+const meta_ts_class_module = { id: "ts-class-module", title: "TypeScript 클래스와 모듈", date: "2026-02-24", summary: "TypeScript의 클래스(접근 제한자, 추상 클래스, implements), 모듈(import/export), 네임스페이스, 데코레이터, 그리고 선언 파일(.d.ts)을 예제와 함께 정리합니다.", category: "Coding/JavaScript", tags: ["typescript","class","module","abstract","decorator","namespace","import","export","basics"] }
+const meta_hacking_dos_attack = { id: "hacking-dos-attack", title: "DoS / DDoS 공격이란?", date: "2026-02-24", summary: "DoS(Denial of Service)와 DDoS 공격의 개념, 주요 공격 유형(SYN Flood, UDP Flood, HTTP Flood, Slowloris, Smurf 등), 실제 공격 흐름과 도구, 그리고 방어 방법까지 정리합니다.", category: "Technology/Hacking", tags: ["hacking","dos","ddos","syn-flood","udp-flood","slowloris","network","security","basics"] }
+const meta_js_data_types_operators = { id: "js-data-types-operators", title: "자바스크립트 데이터 타입과 연산자", date: "2026-02-24", summary: "자바스크립트의 기본 타입(숫자, 문자열, 불린, null, undefined)과 참조 타입(객체, 배열)의 차이, 프로토타입 개념, 그리고 연산자(+, ==, ===, !!)를 소스 코드 예제와 함께 정리합니다.", category: "Coding/JavaScript", tags: ["javascript","data-type","object","array","operator","prototype","basics"] }
+const meta_js_functions = { id: "js-functions", title: "자바스크립트 함수", date: "2026-02-24", summary: "자바스크립트 함수의 정의 방식(선언문, 표현식, Function 생성자), 일급 객체 특성, 호이스팅, this 바인딩(메서드/함수/생성자/apply·call), 클로저, arguments 객체, 프로토타입 체이닝까지 소스 코드와 함께 정리합니다.", category: "Coding/JavaScript", tags: ["javascript","function","this","closure","prototype","hoisting","apply","call","basics"] }
+const meta_js_execution_context_closure = { id: "js-execution-context-closure", title: "실행 컨텍스트, 스코프, 클로저", date: "2026-02-24", summary: "자바스크립트의 실행 컨텍스트(Execution Context), 스코프 체인, 렉시컬 스코프, 그리고 클로저(Closure)의 원리와 다양한 활용 패턴(캡슐화, 비동기, 루프 문제 해결)을 소스 코드와 함께 정리합니다.", category: "Coding/JavaScript", tags: ["javascript","execution-context","scope","closure","lexical-scope","iife","basics"] }
+const meta_js_oop_patterns = { id: "js-oop-patterns", title: "자바스크립트 객체지향 프로그래밍", date: "2026-02-24", summary: "자바스크립트에서 객체지향을 구현하는 다양한 패턴을 정리합니다. 프로토타입 기반 상속, 클래스 기반 상속 흉내, 클로저를 활용한 캡슐화(정보 은닉), 그리고 범용 subClass 함수까지 소스 코드와 함께 설명합니다.", category: "Coding/JavaScript", tags: ["javascript","oop","prototype","inheritance","encapsulation","closure","subclass","basics"] }
+const meta_js_functional_programming = { id: "js-functional-programming", title: "자바스크립트 함수형 프로그래밍", date: "2026-02-24", summary: "자바스크립트에서 함수형 프로그래밍을 구현하는 기법을 정리합니다. 고차 함수, reduce 추상화, 메모이제이션, 커링(Currying), bind, 래퍼 패턴, 그리고 each/map/reduce 직접 구현까지 소스 코드와 함께 설명합니다.", category: "Coding/JavaScript", tags: ["javascript","functional-programming","higher-order","memoization","currying","reduce","map","bind","basics"] }
 const meta_unreal_first_project = { id: "unreal-first-project", title: "Unreal Engine 첫 프로젝트 만들기", date: "2026-02-17", summary: "Unreal Engine에서 새 프로젝트를 만들고, 에디터 레이아웃과 폴더 구조를 파악합니다. Blueprint/C++ 선택, 템플릿 활용법을 정리합니다.", category: "Technology/Unreal", tags: ["unreal","project","editor","blueprint","c++","basics"] }
 const meta_unreal_blueprint_basics = { id: "unreal-blueprint-basics", title: "Blueprint(블루프린트) 기초", date: "2026-02-17", summary: "Blueprint는 Unreal Engine의 비주얼 스크립팅입니다. 노드 연결로 로직을 구현하며, 이벤트·함수·변수 등 기본 개념을 정리합니다.", category: "Technology/Unreal", tags: ["unreal","blueprint","visual-scripting","event","function","basics"] }
 const meta_unreal_actor_component = { id: "unreal-actor-component", title: "Actor와 컴포넌트", date: "2026-02-17", summary: "Unreal Engine에서 Actor는 씬에 배치 가능한 오브젝트이고, 컴포넌트는 그 기능을 구성합니다. Pawn, Character, Actor 계층과 자주 쓰는 컴포넌트를 정리합니다.", category: "Technology/Unreal", tags: ["unreal","actor","component","pawn","character","basics"] }
@@ -483,6 +566,27 @@ export const postList = [
   { ...meta_unity_ui_toolkit, component: Post_unity_ui_toolkit },
   { ...meta_unity_gizmos, component: Post_unity_gizmos },
   { ...meta_unity_scriptable_object, component: Post_unity_scriptable_object },
+  { ...meta_linux_overview, component: Post_linux_overview },
+  { ...meta_linux_history, component: Post_linux_history },
+  { ...meta_linux_partition, component: Post_linux_partition },
+  { ...meta_linux_bios_uefi, component: Post_linux_bios_uefi },
+  { ...meta_linux_lvm, component: Post_linux_lvm },
+  { ...meta_linux_raid, component: Post_linux_raid },
+  { ...meta_linux_file_directory_commands, component: Post_linux_file_directory_commands },
+  { ...meta_linux_user_management, component: Post_linux_user_management },
+  { ...meta_linux_text_editors, component: Post_linux_text_editors },
+  { ...meta_chrome_devtools, component: Post_chrome_devtools },
+  { ...meta_js_array_methods, component: Post_js_array_methods },
+  { ...meta_ts_overview_basic_types, component: Post_ts_overview_basic_types },
+  { ...meta_ts_interface_type_alias, component: Post_ts_interface_type_alias },
+  { ...meta_ts_generics_advanced, component: Post_ts_generics_advanced },
+  { ...meta_ts_class_module, component: Post_ts_class_module },
+  { ...meta_hacking_dos_attack, component: Post_hacking_dos_attack },
+  { ...meta_js_data_types_operators, component: Post_js_data_types_operators },
+  { ...meta_js_functions, component: Post_js_functions },
+  { ...meta_js_execution_context_closure, component: Post_js_execution_context_closure },
+  { ...meta_js_oop_patterns, component: Post_js_oop_patterns },
+  { ...meta_js_functional_programming, component: Post_js_functional_programming },
   { ...meta_unreal_first_project, component: Post_unreal_first_project },
   { ...meta_unreal_blueprint_basics, component: Post_unreal_blueprint_basics },
   { ...meta_unreal_actor_component, component: Post_unreal_actor_component },
@@ -508,7 +612,26 @@ export const postList = [
   { ...meta_convolutional_neural_network, component: Post_convolutional_neural_network },
   { ...meta_recurrent_neural_network, component: Post_recurrent_neural_network },
   { ...meta_lstm_gru, component: Post_lstm_gru },
-  { ...meta_prompt_engineering, component: Post_prompt_engineering }
+  { ...meta_prompt_engineering, component: Post_prompt_engineering },
+  { ...meta_react_overview, component: Post_react_overview },
+  { ...meta_react_components, component: Post_react_components },
+  { ...meta_nodejs_overview_module, component: Post_nodejs_overview_module },
+  { ...meta_nodejs_async_patterns, component: Post_nodejs_async_patterns },
+  { ...meta_nodejs_express_mongodb, component: Post_nodejs_express_mongodb },
+  { ...meta_nodejs_board_project, component: Post_nodejs_board_project },
+  { ...meta_nodejs_nestjs_basics, component: Post_nodejs_nestjs_basics },
+  { ...meta_nodejs_nestjs_auth, component: Post_nodejs_nestjs_auth },
+  { ...meta_nodejs_nestjs_fileupload_websocket, component: Post_nodejs_nestjs_fileupload_websocket },
+  { ...meta_csharp_basics_types_operators, component: Post_csharp_basics_types_operators },
+  { ...meta_csharp_control_methods, component: Post_csharp_control_methods },
+  { ...meta_csharp_class_oop, component: Post_csharp_class_oop },
+  { ...meta_csharp_property_collection_generic, component: Post_csharp_property_collection_generic },
+  { ...meta_csharp_exception_delegate_event, component: Post_csharp_exception_delegate_event },
+  { ...meta_csharp_lambda_linq_async, component: Post_csharp_lambda_linq_async },
+  { ...meta_csharp_reflection_attribute, component: Post_csharp_reflection_attribute },
+  { ...meta_csharp_dynamic, component: Post_csharp_dynamic },
+  { ...meta_csharp_file_io, component: Post_csharp_file_io },
+  { ...meta_csharp_network, component: Post_csharp_network }
 ].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
 
 export const postMetaById = Object.fromEntries(postList.map((p) => [p.id, p]))

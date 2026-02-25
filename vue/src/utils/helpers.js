@@ -18,6 +18,7 @@ export function readingTimeFromLines(lines) {
 export function catToSlug(cat) {
   return String(cat || '')
     .toLowerCase()
+    .replace(/#/g, 'sharp')
     .replace(/\s+/g, '-')
     .replace(/\//g, '-')
 }
