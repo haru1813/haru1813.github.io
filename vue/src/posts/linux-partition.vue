@@ -5,7 +5,7 @@ import ArticleBody from '@/components/ArticleBody.vue'
 const post = {
   id: "linux-partition",
   title: "리눅스 파티션(Partition)이란?",
-  date: "2026-02-24",
+  date: "2026-03-11",
   summary: "파티션은 하나의 디스크를 논리적으로 나눈 영역입니다. MBR/GPT 파티션 테이블, 파일시스템(ext4, xfs), swap, 마운트, fdisk/lsblk 명령어까지 정리합니다.",
   category: "Technology/Linux",
   tags: ["linux","partition","filesystem","mount","disk","mbr","gpt","basics"],

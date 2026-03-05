@@ -9,6 +9,7 @@ function escapeHtml(s) {
 
 function processInline(s) {
   return escapeHtml(s)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
 }
@@ -57,8 +58,13 @@ export function mdToHtml(lines) {
 
   const flushCode = () => {
     if (!inCode) return
-    const code = escapeHtml(codeBuf.join('\n'))
-    out.push(`<pre><code${codeLang ? ` data-lang="${escapeHtml(codeLang)}"` : ''}>${code}</code></pre>`)
+    if (codeLang === 'mermaid') {
+      const raw = codeBuf.join('\n')
+      out.push(`<div class="mermaid">${escapeHtml(raw)}</div>`)
+    } else {
+      const code = escapeHtml(codeBuf.join('\n'))
+      out.push(`<pre><code${codeLang ? ` data-lang="${escapeHtml(codeLang)}"` : ''}>${code}</code></pre>`)
+    }
     inCode = false
     codeLang = ''
     codeBuf = []

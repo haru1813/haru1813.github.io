@@ -5,7 +5,7 @@ import ArticleBody from '@/components/ArticleBody.vue'
 const post = {
   id: "linux-overview",
   title: "리눅스 개요",
-  date: "2026-02-24",
+  date: "2026-03-15",
   summary: "리눅스는 오픈소스 유닉스 계열 운영체제입니다. 특징과 장단점, 디렉토리 구조(/, /bin, /etc, /home, /var 등)와 각 디렉토리의 역할을 정리합니다.",
   category: "Technology/Linux",
   tags: ["linux","os","directory","filesystem","open-source","basics"],

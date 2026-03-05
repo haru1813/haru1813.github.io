@@ -5,7 +5,7 @@ import ArticleBody from '@/components/ArticleBody.vue'
 const post = {
   id: "linux-user-management",
   title: "리눅스 사용자 생성 및 계정 관리 명령어",
-  date: "2026-02-24",
+  date: "2026-03-08",
   summary: "리눅스에서 사용자와 그룹을 생성·수정·삭제하는 핵심 명령어를 정리합니다. useradd, usermod, userdel, passwd, groupadd, su, sudo 등 계정 관리에 필요한 명령어를 예제와 함께 설명합니다.",
   category: "Technology/Linux",
   tags: ["linux","user","group","useradd","usermod","passwd","sudo","account","basics"],
