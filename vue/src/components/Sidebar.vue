@@ -40,7 +40,7 @@ const currentCat = computed(() => {
 
 const groups = [
   { name: 'Domain', items: ['Domain/회계', 'Domain/주식', 'Domain/경제', 'Domain/세금', 'Domain/부동산', 'Domain/금융', 'Domain/법', 'Domain/Theory'] },
-  { name: 'Coding', items: ['Coding/JavaScript', 'Coding/Java', 'Coding/Python', 'Coding/C#'] },
+  { name: 'Coding', items: ['Coding/JavaScript', 'Coding/Java', 'Coding/Python', 'Coding/C#', 'Coding/Kotlin', 'Coding/Oracle'] },
   {
     name: 'Technology',
     items: [
@@ -65,8 +65,7 @@ const groups = [
         @error="($e) => ($e.target.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23334%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%2399a%22 font-size=%2224%22%3EH%3C/text%3E%3C/svg%3E')"
       />
       <div class="profile-meta">
-        <div class="profile-name">haru1813</div>
-        <div class="profile-sub muted">dev blog</div>
+        <div class="profile-name">하루 블로그</div>
       </div>
     </div>
     <div class="cat-box">

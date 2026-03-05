@@ -40,8 +40,7 @@ onMounted(() => {
       <RouterLink class="brand" to="/">
         <span class="brand-mark" aria-hidden="true">H</span>
         <span class="brand-text">
-          <strong>haru1813</strong>
-          <span class="muted">dev blog</span>
+          <strong>하루 블로그</strong>
         </span>
       </RouterLink>
       <nav class="nav" aria-label="주요 메뉴">

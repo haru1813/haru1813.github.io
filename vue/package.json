@@ -11,6 +11,7 @@
     "deploy": "npm run build && node scripts/deploy-gh-pages.js"
   },
   "dependencies": {
+    "mermaid": "^11.12.3",
     "vue": "^3.5.27",
     "vue-router": "^5.0.2"
   },
