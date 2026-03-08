@@ -1,11 +1,8 @@
 <script setup>
-import { ref, onMounted, inject, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted, inject } from 'vue'
 
 const theme = ref('dark')
-const route = useRoute()
 const drawer = inject('drawer', { open: () => {}, close: () => {}, isOpen: ref(false) })
-const showMenu = computed(() => !route.path.startsWith('/post/'))
 
 function applyTheme(t) {
   theme.value = t
@@ -48,7 +45,6 @@ onMounted(() => {
       </nav>
       <div class="header-actions">
         <button
-          v-show="showMenu"
           class="icon-btn mobile-only"
           type="button"
           aria-label="카테고리 열기"
