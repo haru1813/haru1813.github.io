@@ -88,7 +88,6 @@ import Post_springboot_security_jwt from './springboot-security-jwt.vue'
 import Post_springboot_webflux from './springboot-webflux.vue'
 import Post_springboot_actuator from './springboot-actuator.vue'
 import Post_springboot_docker from './springboot-docker.vue'
-import Post_springboot_configuration from './springboot-configuration.vue'
 import Post_springboot_test from './springboot-test.vue'
 import Post_springboot_annotations from './springboot-annotations.vue'
 import Post_springboot_aop from './springboot-aop.vue'
@@ -496,7 +495,6 @@ const meta_springboot_spring_cloud = { id: "springboot-spring-cloud", title: "Sp
 const meta_springboot_grpc = { id: "springboot-grpc", title: "Spring Boot + gRPC 완전 정리 - 개념부터 실전 예제까지", date: "2026-02-06", summary: "gRPC의 개념, REST/GraphQL과의 차이, Protocol Buffers, 4가지 통신 패턴(Unary, Server/Client/Bidirectional Streaming), Spring Boot 연동, 서버·클라이언트 구현, 에러 처리, 인터셉터까지 실전 예제로 정리합니다.", category: "Technology/SpringBoot", tags: ["springboot","grpc","protobuf","rpc","microservice","backend"] }
 const meta_springboot_actuator = { id: "springboot-actuator", title: "Spring Boot Actuator와 모니터링", date: "2026-02-09", summary: "Actuator 엔드포인트, 헬스체크, 메트릭, 커스텀 엔드포인트, 보안 설정까지 운영 환경에 필요한 모니터링 요소를 정리합니다.", category: "Technology/SpringBoot", tags: ["springboot","actuator","monitoring","health","metrics"], content: ["Spring Boot Actuator와 모니터링 글입니다."] }
 const meta_springboot_docker = { id: "springboot-docker", title: "Spring Boot 애플리케이션 Docker 컨테이너화", date: "2026-02-08", summary: "Spring Boot 3.x와 Java 21 기반 Docker 이미지 빌드, 멀티 스테이지 빌드, Jib, 최적화 팁까지 정리합니다.", category: "Technology/SpringBoot", tags: ["springboot","docker","container","devops","kubernetes"], content: ["Spring Boot Docker 컨테이너화 글입니다."] }
-const meta_springboot_configuration = { id: "springboot-configuration", title: "Spring Boot 설정(Configuration) 완전 정리", date: "2026-02-11", summary: "application.yml 기본 구조와 프로퍼티 파일 비교, 프로파일 활성화 방법 등 Spring Boot 설정 파일의 기초를 정리합니다.", category: "Technology/SpringBoot", tags: ["springboot","configuration","yaml","profile","backend"] }
 const meta_springboot_test = { id: "springboot-test", title: "Spring Boot 테스트 전략과 예제 - JUnit 5, Given-When-Then, MockMvc까지", date: "2026-03-03", summary: "JUnit 5, Given-When-Then 패턴, @DisplayName, Mockito, MockMvc, @DataJpaTest, @MockBean, 통합 테스트까지 Spring Boot 테스트의 모든 것을 정리합니다.", category: "Technology/SpringBoot", tags: ["springboot","test","junit","mockmvc","mockito","given-when-then","backend"] }
 const meta_springboot_graphql = { id: "springboot-graphql", title: "Spring Boot + GraphQL 완전 정리 - 개념부터 실전 예제까지", date: "2026-02-15", summary: "GraphQL의 개념, REST와의 차이, 핵심 문법(Query, Mutation, Subscription), Spring Boot에서의 프로젝트 설정, Schema 작성, Controller 구현, N+1 문제 해결까지 실전 예제로 정리합니다.", category: "Technology/SpringBoot", tags: ["springboot","graphql","api","query","mutation","backend"] }
 const meta_springboot_filter = { id: "springboot-filter", title: "Spring Boot Filter 완전 정리 - 개념부터 실전 예제까지", date: "2026-03-07", summary: "Servlet Filter의 개념, Interceptor와의 차이, Filter 등록 방법 3가지, 인코딩·CORS·로깅·보안 실전 예제, Filter Chain 실행 순서, OncePerRequestFilter까지 정리합니다.", category: "Technology/SpringBoot", tags: ["springboot","filter","servlet","cors","java","backend"] }
@@ -809,7 +807,6 @@ export const postList = [
   { ...meta_springboot_spring_cloud, component: Post_springboot_spring_cloud },
   { ...meta_springboot_actuator, component: Post_springboot_actuator },
   { ...meta_springboot_docker, component: Post_springboot_docker },
-  { ...meta_springboot_configuration, component: Post_springboot_configuration },
   { ...meta_springboot_rest_api, component: Post_springboot_rest_api },
   { ...meta_springboot_annotations, component: Post_springboot_annotations },
   { ...meta_springboot_aop, component: Post_springboot_aop },
