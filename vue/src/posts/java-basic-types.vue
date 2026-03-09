@@ -239,6 +239,8 @@ const post = {
     "컴파일러가 우변의 값으로 타입을 자동 결정합니다.",
     "",
     "```java",
+    "import java.util.ArrayList;",
+    "",
     "var name = \"홍길동\";       // String으로 추론",
     "var age = 25;              // int로 추론",
     "var score = 95.5;          // double로 추론",

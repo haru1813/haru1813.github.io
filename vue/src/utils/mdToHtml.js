@@ -9,6 +9,7 @@ function escapeHtml(s) {
 
 function processInline(s) {
   return escapeHtml(s)
+    .replace(/&amp;nbsp;/g, '&nbsp;')
     .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
